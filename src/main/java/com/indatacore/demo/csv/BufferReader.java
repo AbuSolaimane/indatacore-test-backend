@@ -1,6 +1,6 @@
 package com.indatacore.demo.csv;
 
-import com.indatacore.demo.model.CsvData;
+import com.indatacore.demo.model.CsvRow;
 import com.indatacore.demo.model.Gender;
 import lombok.SneakyThrows;
 import org.springframework.core.io.ClassPathResource;
@@ -17,15 +17,15 @@ public class BufferReader {
     public static String COMMA_DELIMITER = ",";
 
     @SneakyThrows
-    public static List<CsvData> getRecords() throws URISyntaxException {
-        List<CsvData> records = new ArrayList<>();
+    public static List<CsvRow> getRecords() throws URISyntaxException {
+        List<CsvRow> records = new ArrayList<>();
         Resource resource = new ClassPathResource(PATH);
         File file = resource.getFile();
         Scanner myReader = new Scanner(file);
         while (myReader.hasNextLine()) {
             String line = myReader.nextLine();
             String[] values = line.split(COMMA_DELIMITER);
-            CsvData data = new CsvData();
+            CsvRow data = new CsvRow();
             data.setName(values[0]);
             data.setWeeks(Integer.valueOf(values[1]));
             data.setGender( "Female".equals(values[2]) ? Gender.FEMALE : Gender.MALE);

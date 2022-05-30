@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-public class CsvData {
+public class CsvRow {
     @Id
     private UUID id = UUID.randomUUID();
     private String name;
