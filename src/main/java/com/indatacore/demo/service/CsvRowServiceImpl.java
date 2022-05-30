@@ -7,8 +7,9 @@ import lombok.AllArgsConstructor;
 import net.datafaker.Faker;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -21,7 +22,7 @@ public class CsvRowServiceImpl implements CsvRowService{
     }
 
     @Override
-    public void deleteRow(UUID id) {
+    public void deleteRow(Long id) {
         repository.deleteById(id);
     }
 
@@ -30,10 +31,20 @@ public class CsvRowServiceImpl implements CsvRowService{
         Random random = new Random();
         Faker faker = new Faker();
         CsvRow row = new CsvRow();
-        row.setId(UUID.randomUUID());
+        row.setId(0L);
         row.setName(faker.name().fullName());
         row.setWeeks(300 + random.nextInt(100));
         row.setGender(random.nextInt(10) % 2 == 0? Gender.MALE : Gender.FEMALE);
         return repository.save(row);
+    }
+
+    @Override
+    public List<CsvRow> getAllData() {
+        return repository.findAll();
+    }
+
+    @Override
+    public Optional<CsvRow> findById(Long id) {
+        return repository.findById(id);
     }
 }
