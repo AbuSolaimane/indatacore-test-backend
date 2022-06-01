@@ -17,7 +17,7 @@ public class CsvConfig {
     private final CsvRowRepository csvRowRepository;
 
     @SneakyThrows
-    @Bean
+//    @Bean
     List<CsvRow> getDefaultRecords(){
         return csvRowRepository.saveAll(BufferReader.getRecords());
     }

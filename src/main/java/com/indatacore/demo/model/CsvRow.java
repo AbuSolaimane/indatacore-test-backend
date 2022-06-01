@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Entity
 public class CsvRow {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String name;
     private int weeks;

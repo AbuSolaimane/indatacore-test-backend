@@ -26,9 +26,10 @@ public class BufferReader {
             String line = myReader.nextLine();
             String[] values = line.split(COMMA_DELIMITER);
             CsvRow data = new CsvRow();
-            data.setName(values[0]);
-            data.setWeeks(Integer.valueOf(values[1]));
-            data.setGender( "Female".equals(values[2]) ? Gender.FEMALE : Gender.MALE);
+            data.setId(Long.valueOf(values[0]));
+            data.setName(values[1]);
+            data.setWeeks(Integer.valueOf(values[2]));
+            data.setGender( "Female".equals(values[3]) ? Gender.FEMALE : Gender.MALE);
             records.add(data);
         }
         return records;

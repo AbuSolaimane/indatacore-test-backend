@@ -31,6 +31,7 @@ public class CsvRowServiceImpl implements CsvRowService{
         Random random = new Random();
         Faker faker = new Faker();
         CsvRow row = new CsvRow();
+        row.setId(0L);
         row.setName(faker.name().fullName());
         row.setWeeks(300 + random.nextInt(100));
         row.setGender(random.nextInt(10) % 2 == 0? Gender.MALE : Gender.FEMALE);
