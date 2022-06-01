@@ -1,6 +1,7 @@
 package com.indatacore.demo.controller;
 
 import com.indatacore.demo.csv.BufferReader;
+import com.indatacore.demo.exceptions.CsvRowNotFoundException;
 import com.indatacore.demo.model.CsvRow;
 import com.indatacore.demo.service.CsvRowService;
 import lombok.AllArgsConstructor;
@@ -40,11 +41,17 @@ public class CSVController {
 
     @DeleteMapping("row/{id}")
     void deleteRow(@PathVariable Long id){
+
+        service.findById(id).orElseThrow(() -> {
+            return new CsvRowNotFoundException(id);
+        });
         service.deleteRow(id);
     }
 
     @GetMapping("row/{id}")
     CsvRow findRowById(@PathVariable Long id){
-        return service.findById(id).get();
+        return service.findById(id).orElseThrow(() -> {
+            return new CsvRowNotFoundException(id);
+        });
     }
 }
